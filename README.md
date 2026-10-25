@@ -42,8 +42,8 @@ Default admin: `admin@example.com` / `Admin123!` (change with the `ADMIN_EMAIL` 
 2. Official university dataset (about 250,000 questions, a CSV or JSON file, possibly over 1 GB): do not upload it in the browser. Stop the backend, then run this in the `backend` folder (the venv must be active):
 
    ```
-   python scripts/import_dataset.py "C:\\path\\to\\dataset.json" --limit 2000     # quick test with the first 2000 records
-   python scripts/import_dataset.py "C:\\path\\to\\dataset.json"                   # everything (10-60 minutes)
+   python scripts/import_dataset.py "C:\path\to\dataset.json" --limit 2000     # quick test with the first 2000 records
+   python scripts/import_dataset.py "C:\path\to\dataset.json"                   # everything (10-60 minutes)
    ```
 
    The script reads the file as a stream, imports it in parts of 20,000 records with the same code as the admin page (duplicates are skipped), and prints its progress. It is safe to run again. Start the backend again afterwards.
