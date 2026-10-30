@@ -48,6 +48,9 @@ def _crud(path: str, Model, field: str):
         if not row:
             raise HTTPException(404, "Not found")
         old, new = row.name, data.name.strip()
+        clash = db.query(Model).filter(func.lower(Model.name) == new.lower(), Model.id != item_id).first()
+        if clash:
+            raise HTTPException(400, "Already exists")
         row.name = new
         db.query(Question).filter(getattr(Question, field) == old).update({field: new})  # keep questions in sync
         db.commit()

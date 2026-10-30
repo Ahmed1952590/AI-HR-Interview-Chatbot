@@ -7,7 +7,7 @@ Run from the backend folder (no need to activate anything special, it only uses 
 
     python scripts/shrink_dataset.py "C:\\path\\to\\hr_interview_questions_dataset.json" --every 10 --zip
 
---every 10 keeps 1 record in 10 (about 25,000 questions from 250,000). Use --every 5 for about 50,000.
+--every 10 keeps 1 record in 10 (one tenth of the file). Use --every 5 for about 50,000.
 The result is written next to the big file, with "_small" in its name.
 """
 import argparse

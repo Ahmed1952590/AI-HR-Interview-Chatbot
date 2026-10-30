@@ -39,21 +39,20 @@ The administrator account is `admin@example.com` with the password `Admin123!`. 
 Nothing works until some questions are loaded. There are two ways:
 
 1. **Small test.** In the admin panel open **Dataset** and upload `data/sample_dataset.csv` (96 questions). It takes seconds.
-2. **The dataset (about 250,000 questions).** It is in the `data` folder as a zip file (`data/*.zip`). Unzip it so you have the
-   `.json` file. The file is over 1 GB, so do not upload it in the browser. Stop the backend and run this in the `backend`
-   folder with the venv active (use your real path to the unzipped file):
+2. **The course dataset.** It is in the `data` folder as a zip file (`data/*.zip`). Unzip it so you have the `.json` file. The
+   file is about 1.2 GB and holds 2.5 million rows, but only 8,640 of them are different (40 question texts across 8 roles,
+   9 experience levels, 3 difficulties and 8 categories). The importer skips the repeats, so the app ends up with about 8,640
+   questions. Do not upload the file in the browser. Stop the backend and run this in the `backend` folder with the venv
+   active (use your real path to the unzipped file):
    ```
-   python scripts/import_dataset.py "C:\path\to\hr_interview_questions_dataset.json" --limit 20000
-   python scripts/import_dataset.py "C:\path\to\hr_interview_questions_dataset.json"
+   python scripts/import_dataset.py "C:\path\to\hr_interview_questions_dataset.json" --limit 100000
    ```
-   The first command imports only 20,000 records, which takes a few minutes and is enough to see the app working. The second
-   imports everything and needs 10 to 60 minutes. The script reads the file piece by piece (20,000 records at a time, change it
-   with `--part-size`), skips duplicates and can be run again safely. Start the backend again when it finishes, and the questions
-   show on the admin **Questions** page.
+   `--limit 100000` reads the first 100,000 rows, which already contains nearly every different question and takes a few
+   minutes. Without `--limit` the whole file is read (much longer, same result). The script reads the file piece by piece
+   (20,000 records at a time, change it with `--part-size`), skips duplicates and can be run again safely. Start the backend
+   again when it finishes, and the questions show on the admin **Questions** page.
 
-   To make a much smaller copy of the big file (for example to share it or put it on GitHub), run
-   `python scripts/shrink_dataset.py "C:\path\to\hr_interview_questions_dataset.json" --every 10 --zip` in the `backend` folder.
-   It keeps one record in ten, spread over the whole file, and writes `..._small.json` and `..._small.zip` next to the original.
+   `scripts/shrink_dataset.py` can make a smaller copy of a big file (one record in N), but for this dataset it is not needed.
 
 After that, log out, create a candidate account with **Create an account**, and start an interview.
 

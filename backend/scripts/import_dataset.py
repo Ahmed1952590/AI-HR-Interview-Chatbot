@@ -5,8 +5,8 @@ admin Dataset page (validate, skip duplicates, embed with Sentence-BERT, add to 
 
 Run from the backend folder, with the backend server STOPPED (it keeps its own copy of the FAISS index in memory):
 
-    python scripts/import_dataset.py "C:\\path\\to\\hr interview 250000dataset _ json.json" --limit 2000   # quick test
-    python scripts/import_dataset.py "C:\\path\\to\\hr interview 250000dataset _ json.json"               # everything
+    python scripts/import_dataset.py "C:\\path\\to\\hr_interview_questions_dataset.json" --limit 100000   # enough for all distinct questions
+    python scripts/import_dataset.py "C:\\path\\to\\hr_interview_questions_dataset.json"               # everything
 
 Then start the backend again. It is safe to run the script again: records that already exist are skipped.
 """
