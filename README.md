@@ -36,20 +36,20 @@ Then open http://localhost:5173.
 The administrator account is `admin@example.com` with the password `Admin123!`. You can change it with the `ADMIN_EMAIL` and
 `ADMIN_PASSWORD` environment variables.
 
-Nothing works until some questions are loaded. There are three ways:
+Nothing works until some questions are loaded. There are two ways:
 
 1. **Small test.** In the admin panel open **Dataset** and upload `data/sample_dataset.csv` (96 questions). It takes seconds.
-2. **The university dataset (about 250,000 questions).** It is a very big file, so do not upload it in the browser. Stop the
-   backend and run this in the `backend` folder with the venv active:
+2. **The dataset (about 250,000 questions).** It is in the `data` folder as a zip file (`data/*.zip`). Unzip it so you have the
+   `.json` file. The file is over 1 GB, so do not upload it in the browser. Stop the backend and run this in the `backend`
+   folder with the venv active (use your real path to the unzipped file):
    ```
-   python scripts/import_dataset.py "C:\path\to\dataset.json" --limit 2000
-   python scripts/import_dataset.py "C:\path\to\dataset.json"
+   python scripts/import_dataset.py "C:\path\to\hr_interview_questions_dataset.json" --limit 20000
+   python scripts/import_dataset.py "C:\path\to\hr_interview_questions_dataset.json"
    ```
-   The first command imports only 2,000 records so you can check that it works. The second imports everything and needs
-   10 to 60 minutes. The script reads the file piece by piece (20,000 records at a time, change it with `--part-size`),
-   skips duplicates and can be run again safely. Start the backend again when it finishes.
-3. **A synthetic set of the same size.** `data/demo_dataset_250000.zip` holds 250,000 generated questions (not real university data).
-   Unzip it and import the CSV the same way as in option 2. `backend/scripts/make_demo_dataset.py` makes a new one.
+   The first command imports only 20,000 records, which takes a few minutes and is enough to see the app working. The second
+   imports everything and needs 10 to 60 minutes. The script reads the file piece by piece (20,000 records at a time, change it
+   with `--part-size`), skips duplicates and can be run again safely. Start the backend again when it finishes, and the questions
+   show on the admin **Questions** page.
 
 After that, log out, create a candidate account with **Create an account**, and start an interview.
 

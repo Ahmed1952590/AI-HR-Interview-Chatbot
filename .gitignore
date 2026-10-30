@@ -10,4 +10,4 @@ dist/
 .env
 *.db
 *.index
-!data/demo_dataset_250000.zip
+!data/*.zip
