@@ -54,11 +54,6 @@ Nothing works until some questions are loaded. There are two ways:
 
    `scripts/shrink_dataset.py` can make a smaller copy of a big file (one record in N), but for this dataset it is not needed.
 
-3. **Generated demo set (250,000 questions).** `data/demo_dataset_250000.zip` holds `demo_dataset_250000.csv`, 250,000 unique
-   questions that I generated with `backend/scripts/make_demo_dataset.py`. It is synthetic, it is NOT the university dataset, and it
-   is used to show the app working at that size. Unzip it and run
-   `python scripts/import_dataset.py "C:\path\to\demo_dataset_250000.csv"` in the `backend` folder (backend stopped).
-
 After that, log out, create a candidate account with **Create an account**, and start an interview.
 
 ## Running with Docker
