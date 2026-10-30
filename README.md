@@ -51,6 +51,10 @@ Nothing works until some questions are loaded. There are two ways:
    with `--part-size`), skips duplicates and can be run again safely. Start the backend again when it finishes, and the questions
    show on the admin **Questions** page.
 
+   To make a much smaller copy of the big file (for example to share it or put it on GitHub), run
+   `python scripts/shrink_dataset.py "C:\path\to\hr_interview_questions_dataset.json" --every 10 --zip` in the `backend` folder.
+   It keeps one record in ten, spread over the whole file, and writes `..._small.json` and `..._small.zip` next to the original.
+
 After that, log out, create a candidate account with **Create an account**, and start an interview.
 
 ## Running with Docker
@@ -92,7 +96,7 @@ in the `backend` folder, or tick **Search by meaning** on the admin Questions pa
 backend/app/        main.py, config.py, database.py, models.py, security.py
   routers/          auth, users, interview, questions, dataset, meta, analytics
   services/         nlp.py (Sentence-BERT and FAISS), retrieval.py, importer.py
-backend/scripts/    import_dataset.py, make_sample_dataset.py, make_demo_dataset.py, semantic_demo.py
+backend/scripts/    import_dataset.py, shrink_dataset.py, make_sample_dataset.py, make_demo_dataset.py, semantic_demo.py
 backend/tests/      the pytest tests
 frontend/src/       App.tsx, api.ts, auth.tsx, pages/ (Auth, Candidate, Interview, Admin)
 .github/workflows/  ci.yml
